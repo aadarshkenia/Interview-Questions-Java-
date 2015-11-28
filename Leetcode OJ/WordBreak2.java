@@ -2,13 +2,13 @@ import java.util.*;
 
 class WordBreak2{
 	public static void main(String args[]){
-		String s = "catsanddog";
+		String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
 		HashSet<String> set = new HashSet();
-		set.add("cat");
-		set.add("cats");
-		set.add("and");
-		set.add("sand");
-		set.add("dog");
+		set.add("a");
+		set.add("aa");
+		set.add("b");
+		//set.add("sand");
+		//set.add("dog");
 
 		List<String> ans = wordBreak(s, set);
 		System.out.println(ans);
@@ -16,47 +16,32 @@ class WordBreak2{
 
 	public static List<String> wordBreak(String s, Set<String> dict){
 		List<String> result = new ArrayList<String>();
-		Iterator it = dict.iterator();
-		while(it.hasNext()){
-			String dict_word = (String)it.next();
-			if(dict_word.equals(s)){
-				result.add(dict_word);
-				return result;
+		int n = s.length();
+		boolean buf[] = new boolean[n];	
+		List<List<String>> bufList = new ArrayList<List<String>>();	
+		for(int i=0;i<n;i++){
+			List<String> sentences = new ArrayList<String>();
+			if(dict.contains(s.substring(0, i+1))){
+				buf[i] = true;
+				sentences.add(s.substring(0, i+1));
 			}
-
-			if(isPrefix(dict_word, s)){
-				Set<String> newset = copySet(dict);
-				newset.remove(dict_word);
-				List<String> smallList = wordBreak(s.substring(dict_word.length()), newset);
-				if(smallList.size() > 0){
-					for(String small_string : smallList)
-						result.add(dict_word+" "+small_string);
-				}
+			else{
+				for(int j=i-1; j>=0;j--){
+					if(buf[j] == true){
+						if(dict.contains(s.substring(j+1, i+1))){
+							buf[i] = true;
+							List<String> prevSentences = bufList.get(j);
+							for(String prefix : prevSentences){
+								sentences.add(prefix+" "+s.substring(j+1, i+1));
 							}
-		}//set iterator
-		return result;
+						}
+					}
+				}
+			}
+			//System.out.println("i: "+i+" : "+buf[i]);
+			bufList.add(i, sentences);
+		}	
+		return bufList.get(n-1);
 	}//function
-
-	//To check if smaller word is a prefix of larger word
-	public static boolean isPrefix(String small, String large){
-		if(small.length() > large.length())
-			return false;
-
-		int slen = small.length();
-		for(int i=0;i<slen;i++){
-			if(small.charAt(i) != large.charAt(i))
-				return false;
-		}
-		return true;
-	}
-
-	public static Set<String> copySet(Set<String> original){
-		Set<String> newset = new HashSet<String>();
-		Iterator it = original.iterator();
-		while(it.hasNext()){
-			newset.add((String)it.next());
-		}
-		return newset;
-	}
 
 }
