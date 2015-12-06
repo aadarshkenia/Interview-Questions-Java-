@@ -11,6 +11,7 @@ class ReverseWords{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
 		String input = null;
 		try{
+			System.out.println("Enter a string: ");
 			input = br.readLine();
 		}
 		catch(IOException e){
@@ -41,18 +42,21 @@ class ReverseWords{
 				if(i!=0){
 					current_word = input.substring(i+1, last_space);
 				}
+				/*
 				else{
 					if(input.charAt(i)!=' ')
 						current_word = input.substring(0, last_space);
 					else 
 						current_word = input.substring(1, last_space);
 				}
+				*/
 				if(output.length()!=0)
 					output.append(" ");
 				output.append(current_word);
 				last_space = i;
 			} 
 		}
+		output.append(input.substring(0, last_space));
 
 		return output.toString();
 
