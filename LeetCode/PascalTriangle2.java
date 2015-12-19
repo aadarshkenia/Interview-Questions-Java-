@@ -1,0 +1,27 @@
+import java.util.*;
+class PascalTriangle2{
+    static int[] factorials;
+    public static void main(String args[]){
+        int rowIndex = Integer.parseInt(args[0]);
+        System.out.println(getRow(rowIndex));
+    }
+
+    public static List<Integer> getRow(int rowIndex) {
+        int n = rowIndex;
+        int mid = n/2;
+        Integer ans[] = new Integer[n+1];
+            
+        ans[0] = 1;
+        ans[n] = 1;
+        int coeff = n;
+        for(int i=1; i <= n-i; i++){
+            coeff = i == 1 ? n : (coeff * (n-i+1))/(i); 
+         
+            ans[i] = coeff;
+            ans[n-i] = coeff;
+        }
+        List<Integer> retval = Arrays.asList(ans);
+        return retval;
+    }
+
+}
