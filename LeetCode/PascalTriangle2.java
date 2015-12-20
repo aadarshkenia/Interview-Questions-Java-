@@ -13,12 +13,14 @@ class PascalTriangle2{
             
         ans[0] = 1;
         ans[n] = 1;
-        int coeff = n;
+        long coeff = n;
         for(int i=1; i <= n-i; i++){
-            coeff = i == 1 ? n : (coeff * (n-i+1))/(i); 
-         
-            ans[i] = coeff;
-            ans[n-i] = coeff;
+            coeff = i == 1 ? n : (coeff * (long)(n-i+1))/(i); 
+			if(i == n-i){
+				
+			} 	         
+            ans[i] = (int)coeff;
+            ans[n-i] = (int)coeff;
         }
         List<Integer> retval = Arrays.asList(ans);
         return retval;
