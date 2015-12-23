@@ -1,11 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-}
+
 
 class PathSum{
 	public static void main(String args[]){
