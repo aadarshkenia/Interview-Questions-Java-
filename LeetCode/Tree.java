@@ -1,9 +1,6 @@
 
 public class Tree{
 	TreeNode root = null;
-	Tree(TreeNode root){
-		this.root = root;
-	}
 
 	//Create tree from array
 	public Tree(int x[]){
@@ -11,23 +8,19 @@ public class Tree{
 		if(n == 0)
 			return;
 		TreeNode nodes[] = new TreeNode[n];
-		nodes[0] = new TreeNode(x[0]);
+		for(int i=0; i < n; i++)
+			nodes[i] = x[i] != -1 ? (new TreeNode(x[i])) : null;
 		root = nodes[0];
 		for(int i=0; i < n; i++){
 			TreeNode curr = nodes[i];
+			if(curr == null)
+				continue;
 			int lc = 2*i+1;
 			int rc = 2*i+2;
-			TreeNode leftChild = null, rightChild = null;
-			if(lc<n){
-				leftChild = new TreeNode(x[lc]);
-				nodes[lc] = leftChild;
-			}
-			if(rc < n){
-				rightChild = new TreeNode(x[rc]);
-				nodes[rc] = rightChild;	
-			}
-			curr.left = leftChild;
-			curr.right = rightChild;
+			if(lc < n)
+				curr.left = nodes[lc];
+			if(rc < n)
+				curr.right = nodes[rc];
 		}
 	}
 
@@ -36,9 +29,7 @@ public class Tree{
 			return;
 		System.out.println(node.val);
 
-		if(node.left != null)
-			dfs(node.left);
-		if(node.right != null)
-			dfs(node.right);
+		dfs(node.left);
+		dfs(node.right);
 	}
 }

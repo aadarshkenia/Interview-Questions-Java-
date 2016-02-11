@@ -1,22 +1,17 @@
-class LinkedListNode{
-	int val;
-	LinkedListNode next;
-	LinkedListNode(int val){
-		this.val = val;
-	}
-}
 class LinkedList{
 	
-	LinkedListNode head = null;
+	ListNode head = null;
 
-	public void print(LinkedListNode head){
-		while(head!=null){
-			System.out.print(head.val+" ");
-			head = head.next;
+	public void print(){
+		ListNode temp = head;
+		while(temp != null){
+			System.out.print(temp.val+" ");
+			temp = temp.next;
 		}
 		System.out.println();
 	}
-	public int getCount(LinkedListNode head){
+
+	public int getCount(ListNode head){
 		int count=0;
 		while(head!=null){
 			count++;
@@ -27,17 +22,27 @@ class LinkedList{
 
 
 	public void createListFromArray(int x[]){
-		LinkedListNode prev = null;
+		ListNode prev = null;
 		for(int i=0;i<x.length;i++){
 			if(i==0){
-				head= new LinkedListNode(x[i]);
+				head= new ListNode(x[i]);
 				prev = head;
 			}
 			else{
-				LinkedListNode curr = new LinkedListNode(x[i]);
+				ListNode curr = new ListNode(x[i]);
 				prev.next = curr;
 				prev=curr;
 			}
 		}
+	}
+}
+
+
+class ListNode{
+	int val;
+	ListNode next;
+
+	ListNode(int val){
+		this.val = val;
 	}
 }
