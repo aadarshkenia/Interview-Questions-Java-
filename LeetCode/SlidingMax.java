@@ -76,3 +76,7 @@ class SlidingMax{
 		return child/2;
 	}
 }
+
+class HeapNode{
+	
+}

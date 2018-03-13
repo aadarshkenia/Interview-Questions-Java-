@@ -16,8 +16,14 @@ class TrieNode{
 }
 
 public class Trie{
-	TrieNode root = new TrieNode('\0');
+	TrieNode root = null;
+	Trie(){
+		root = new TrieNode('\0');
+	}
 
+	public TrieNode getRoot(){
+		return root;
+	}
 
 	public void addWord(String str){
 		TrieNode parent = root;
@@ -48,7 +54,7 @@ public class Trie{
 		for(int i=0;i<n;i++){			
 			char c = word.charAt(i);
 			if(c != '.'){
-				System.out.println("current char: "+c);
+				//System.out.println("current char: "+c);
 				if(parent.children.get(c) == null)
 					return false;
 				else{

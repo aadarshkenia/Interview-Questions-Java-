@@ -7,7 +7,7 @@ class InterleavedStrings {
 		boolean buf[][] = new boolean[n1+1][n2+1];	
 		buf[n2][n1] = true;
 		for(int i=n1 - 1; i >= 0; i--) {
-			buf[n2][i] = buf[]
+			buf[n2][i] = buf[n2][i+1] && a.charAt(i) == c.charAt();
 		}
 	}
 }

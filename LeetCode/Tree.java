@@ -1,7 +1,15 @@
 
 public class Tree{
 	TreeNode root = null;
+	
+	//Default constructor
+	public Tree(){
+	
+	}
 
+	public Tree(TreeNode root){
+		this.root = root;
+	}
 	//Create tree from array
 	public Tree(int x[]){
 		int n = x.length;
@@ -9,7 +17,7 @@ public class Tree{
 			return;
 		TreeNode nodes[] = new TreeNode[n];
 		for(int i=0; i < n; i++)
-			nodes[i] = x[i] != -1 ? (new TreeNode(x[i])) : null;
+			nodes[i] = x[i] != -10 ? (new TreeNode(x[i])) : null;
 		root = nodes[0];
 		for(int i=0; i < n; i++){
 			TreeNode curr = nodes[i];

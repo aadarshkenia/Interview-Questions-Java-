@@ -40,9 +40,23 @@ class MaxHeap{
 		return ret;
 	}
 
+	public int delete(int index){
+		if(size == 0 || index > size-1 || index < 0){
+			System.out.println("Error, cannot delete.");
+			return Integer.MIN_VALUE;
+		}
+		else{
+			int delElem = x[index];
+			x[index] = x[size-1];
+			size--;
+			heapifyTopDown(index);
+			return delElem;
+		}
+	}
+
 
 	public void heapifyTopDown(int index){
-		int temp = 0;
+		int temp = index;
 		while(temp <= parent(size-1) && size!=1){
 			int left_index = leftChild(temp);
 			int right_index = rightChild(temp);
