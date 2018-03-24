@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class KSmallest {
 	
 	public static void main(String args[]) throws IOException {
-		int x[] = {-1, 2, 1, 5, 10, -10};
+		int x[] = {1, 2, 1, 5, 1, -10};
 		System.out.println(new KSmallest().qsortModified(x, Integer.parseInt(args[0])));
 	}
 
